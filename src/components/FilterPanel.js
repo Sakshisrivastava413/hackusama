@@ -14,7 +14,7 @@ const FilterPanel = ({
             type="radio"
             value="Graph"
             onChange={updateGraph}
-            checked={graphType == "Graph"}
+            checked={graphType === "Graph"}
           />
           <label>Graph</label>
         </div>
@@ -23,7 +23,7 @@ const FilterPanel = ({
             type="radio"
             value="Tree"
             onChange={updateGraph}
-            checked={graphType == "Tree"}
+            checked={graphType === "Tree"}
           />
           <label>Tree</label>
         </div>
@@ -34,7 +34,7 @@ const FilterPanel = ({
             type="radio"
             value="Connected"
             onChange={updateConnection}
-            checked={connectionType == "Connected"}
+            checked={connectionType === "Connected"}
           />
           <label>Connected</label>
         </div>
@@ -43,7 +43,7 @@ const FilterPanel = ({
             type="radio"
             value="Disconnected"
             onChange={updateConnection}
-            checked={connectionType == "Disconnected"}
+            checked={connectionType === "Disconnected"}
           />
           <label>Disconnected</label>
         </div>
