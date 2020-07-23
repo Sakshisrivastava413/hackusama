@@ -10,10 +10,9 @@ const Network = ({ graphType, graphData }) => {
     let cy = cytoscape(
       createCytoscapeConfig(getGraphData(graphData), graphType)
     );
-    cy.animation({ zoom: 1 })
-      .play()
-      .promise()
-      .then(() => cy.animation({ fit: true }).stop().promise());
+    cy.animate().delay(1000).animate({
+      zoom: 1,
+    });
   }, [graphType, graphData]);
   return <div id="cy" style={{ height: "42rem", position: "relative" }}></div>;
 };
