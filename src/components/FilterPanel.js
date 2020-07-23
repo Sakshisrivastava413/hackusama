@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const FilterPanel = () => {
-  const [graphType, changeGraphType] = useState("Graph");
-  const [connectionType, changeConnectionType] = useState("Connected");
-  const updateGraph = () =>
-    changeGraphType(graphType == "Graph" ? "Tree" : "Graph");
-  const updateConnection = () =>
-    changeConnectionType(
-      connectionType == "Connected" ? "Disconnected" : "Connected"
-    );
+const FilterPanel = ({
+  graphType,
+  connectionType,
+  updateConnection,
+  updateGraph,
+}) => {
   return (
     <div style={{ display: "flex" }}>
       <div style={{ margin: 20 }}>
