@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import cytoscape from "cytoscape";
+import dagre from "cytoscape-dagre";
 import { createCytoscapeConfig, getGraphData } from "../utils";
+
+cytoscape.use(dagre);
 
 const Network = ({ graphType, graphData }) => {
   useEffect(() => {

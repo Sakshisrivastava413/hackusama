@@ -63,8 +63,7 @@ function getLayout(type) {
         coolingFactor: 0.95,
       }
     : {
-        name: "breadthfirst",
-        fit: true,
+        name: "dagre",
       };
 }
 
