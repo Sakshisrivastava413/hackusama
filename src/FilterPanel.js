@@ -1,0 +1,58 @@
+import React, { useState } from "react";
+
+const FilterPanel = () => {
+  const [graphType, changeGraphType] = useState("Graph");
+  const [connectionType, changeConnectionType] = useState("Connected");
+  const updateGraph = () =>
+    changeGraphType(graphType == "Graph" ? "Tree" : "Graph");
+  const updateConnection = () =>
+    changeConnectionType(
+      connectionType == "Connected" ? "Disconnected" : "Connected"
+    );
+  return (
+    <div style={{ display: "flex" }}>
+      <div style={{ margin: 20 }}>
+        <div>
+          <input
+            type="radio"
+            value="Graph"
+            onChange={updateGraph}
+            checked={graphType == "Graph"}
+          />
+          <label>Graph</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Tree"
+            onChange={updateGraph}
+            checked={graphType == "Tree"}
+          />
+          <label>Tree</label>
+        </div>
+      </div>
+      <div style={{ margin: 20 }}>
+        <div>
+          <input
+            type="radio"
+            value="Connected"
+            onChange={updateConnection}
+            checked={connectionType == "Connected"}
+          />
+          <label>Connected</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Disconnected"
+            onChange={updateConnection}
+            checked={connectionType == "Disconnected"}
+          />
+          <label>Disconnected</label>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FilterPanel;
