@@ -1,0 +1,89 @@
+[
+    {
+        "address": "1N",
+        "backedValidators": [
+            {
+                "address": "1N1V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N2V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N3V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N4V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N5V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N6V",
+                "backedAmount": 10
+            }
+        ]
+    },
+    {
+        "address": "2N",
+        "backedValidators": [
+            {
+                "address": "2N1V",
+                "backedAmount": 10
+            },
+            {
+                "address": "2N2V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N3V",
+                "backedAmount": 10
+            },
+            {
+                "address": "1N4V",
+                "backedAmount": 10
+            },
+            {
+                "address": "2N5V",
+                "backedAmount": 10
+            },
+            {
+                "address": "2N6V",
+                "backedAmount": 10
+            }
+        ]
+    },
+    {
+        "address": "3N",
+        "backedValidators": [
+            {
+                "address": "3N1V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N2V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N3V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N4V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N5V",
+                "backedAmount": 10
+            },
+            {
+                "address": "3N6V",
+                "backedAmount": 10
+            }
+        ]
+    }
+]
