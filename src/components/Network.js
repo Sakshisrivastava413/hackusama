@@ -3,10 +3,10 @@ import cytoscape from "cytoscape";
 import data from "../data.json";
 import { createCytoscapeConfig, getGraphData } from "../utils";
 
-const Network = () => {
+const Network = ({ graphType }) => {
   useEffect(() => {
-    cytoscape(createCytoscapeConfig(getGraphData(data)));
-  }, []);
+    cytoscape(createCytoscapeConfig(getGraphData(data), graphType));
+  }, [graphType]);
   return <div id="cy" style={{ height: "42rem", position: "relative" }}></div>;
 };
 

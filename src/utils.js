@@ -29,7 +29,7 @@ function getGraphData(data) {
   return elements;
 }
 
-function createCytoscapeConfig(elements) {
+function createCytoscapeConfig(elements, graphType) {
   return {
     container: document.getElementById("cy"),
     elements: elements,
@@ -49,8 +49,23 @@ function createCytoscapeConfig(elements) {
         },
       },
     ],
+    layout: getLayout(graphType),
     zoom: 2,
   };
+}
+
+function getLayout(type) {
+  return type == "Graph"
+    ? {
+        name: "cose",
+        nodeRepulsion: 400000,
+        gravity: 80,
+        coolingFactor: 0.95,
+      }
+    : {
+        name: "breadthfirst",
+        fit: true,
+      };
 }
 
 export { createCytoscapeConfig, getGraphData };

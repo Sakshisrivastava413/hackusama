@@ -14,7 +14,7 @@ const App = () => {
     );
   return (
     <div className="App">
-      <Network />
+      <Network graphType={graphType} />
       <FilterPanel
         graphType={graphType}
         connectionType={connectionType}
