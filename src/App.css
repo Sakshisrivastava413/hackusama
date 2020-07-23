@@ -1,3 +1,5 @@
 .App {
-  text-align: center;
+  border: 1px solid black;
+  margin: 20px;
+  height: calc(100vh - 40px);
 }
