@@ -9,6 +9,7 @@ function getGraphData(data) {
         nominators: el.backedValidators,
         shape: "barrel",
         size: el.size,
+        length: el.length,
       },
     });
   });

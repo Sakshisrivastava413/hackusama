@@ -33,6 +33,8 @@ const Network = ({ graphType, graphData }) => {
             id: v.address,
             bg: "blue",
             shape: "ellipse",
+            size: v.size,
+            length: v.length,
           },
         });
         elements.push({
@@ -48,6 +50,11 @@ const Network = ({ graphType, graphData }) => {
         name: "dagre",
         fit: false,
         rankSep: 200,
+        transform: function (node, pos) {
+          const { shape, length } = node._private.data;
+          if (shape === "ellipse") return { x: pos.x, y: pos.y + length };
+          return pos;
+        },
       });
       layout.run();
       cy.zoom(1);
