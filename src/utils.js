@@ -8,6 +8,7 @@ function getGraphData(data) {
         bg: "red",
         nominators: el.backedValidators,
         shape: "barrel",
+        size: el.size,
       },
     });
   });
@@ -24,7 +25,9 @@ function createCytoscapeConfig(elements, graphType) {
         selector: "node",
         style: {
           "background-color": "data(bg)",
-          "shape": "data(shape)",
+          shape: "data(shape)",
+          width: "data(size)",
+          height: "data(size)",
         },
       },
       {
