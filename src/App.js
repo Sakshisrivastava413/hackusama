@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Network from "./components/Network";
-import FilterPanel from "./components/FilterPanel";
+// import FilterPanel from "./components/FilterPanel";
 import data from "./newData.json";
 
 const App = () => {
-  const [graphType, changeGraphType] = useState("Graph");
+  const [graphType, changeGraphType] = useState("Tree");
   const [connectionType, changeConnectionType] = useState("Connected");
   const [disconnectedData, setDisconnectedData] = useState([]);
   useEffect(() => {
@@ -26,12 +26,12 @@ const App = () => {
         graphType={graphType}
         graphData={connectionType === "Connected" ? data : disconnectedData}
       />
-      <FilterPanel
+      {/* <FilterPanel
         graphType={graphType}
         connectionType={connectionType}
         updateConnection={updateConnection}
         updateGraph={updateGraph}
-      />
+      /> */}
     </div>
   );
 };
