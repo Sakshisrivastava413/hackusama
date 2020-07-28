@@ -33,7 +33,7 @@ const Network = ({ graphType, graphData }) => {
             id: v.address,
             bg: "blue",
             shape: "ellipse",
-            size: v.size,
+            size: v.rank * 10,
             rank: v.rank,
           },
         });

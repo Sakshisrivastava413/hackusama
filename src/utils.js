@@ -8,12 +8,21 @@ function getGraphData(data) {
         bg: "red",
         nominators: el.backedValidators,
         shape: "barrel",
-        size: el.size,
+        size: getSize(el.rank),
         rank: el.rank,
       },
     });
   });
   return elements;
+}
+
+function getSize(rank) {
+  switch(rank) {
+    case 1: return 35
+    case 2: return 25
+    case 3: return 20
+    case 4: return 15
+  }
 }
 
 function createCytoscapeConfig(elements, graphType) {
