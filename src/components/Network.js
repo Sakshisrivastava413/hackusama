@@ -34,7 +34,7 @@ const Network = ({ graphType, graphData }) => {
             bg: "blue",
             shape: "ellipse",
             size: v.size,
-            length: v.length,
+            rank: v.rank,
           },
         });
         elements.push({
@@ -51,9 +51,8 @@ const Network = ({ graphType, graphData }) => {
         fit: false,
         rankSep: 200,
         transform: function (node, pos) {
-          const { shape, length } = node._private.data;
-          if (shape === "ellipse") return { x: pos.x, y: pos.y + length };
-          return pos;
+          const { rank } = node._private.data;
+          return { x: pos.x, y: pos.y + rank * 50 };
         },
       });
       layout.run();

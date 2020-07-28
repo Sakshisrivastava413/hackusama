@@ -9,7 +9,7 @@ function getGraphData(data) {
         nominators: el.backedValidators,
         shape: "barrel",
         size: el.size,
-        length: el.length,
+        rank: el.rank,
       },
     });
   });
@@ -53,6 +53,10 @@ function getLayout(type) {
       }
     : {
         name: "dagre",
+        transform: function (node, pos) {
+          const { rank } = node._private.data;
+          return { x: pos.x, y: pos.y + rank * 50 };
+        },
       };
 }
 
