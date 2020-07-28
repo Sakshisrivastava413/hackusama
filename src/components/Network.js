@@ -44,6 +44,13 @@ const Network = ({ graphType, graphData }) => {
         });
       });
       cy.add(elements);
+      var layout = cy.layout({
+        name: "dagre",
+        fit: false,
+        rankSep: 200,
+      });
+      layout.run();
+      cy.zoom(1);
     });
   }, [graphType, graphData]);
   return <div id="cy" style={{ height: "42rem", position: "relative" }}></div>;
