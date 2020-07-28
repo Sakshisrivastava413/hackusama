@@ -22,6 +22,29 @@ const Network = ({ graphType, graphData }) => {
     node.bind("mouseout", () => {
       document.body.style.cursor = "default";
     });
+
+    node.bind("click", (event) => {
+      const elements = [];
+      const { nominators, id } = event.target._private.data;
+      nominators.forEach((v) => {
+        elements.push({
+          group: "nodes",
+          data: {
+            id: v.address,
+            bg: "blue",
+            shape: "ellipse",
+          },
+        });
+        elements.push({
+          group: "edges",
+          data: {
+            source: id,
+            target: v.address,
+          },
+        });
+      });
+      cy.add(elements);
+    });
   }, [graphType, graphData]);
   return <div id="cy" style={{ height: "42rem", position: "relative" }}></div>;
 };
