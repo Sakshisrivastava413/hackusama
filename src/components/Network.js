@@ -10,8 +10,17 @@ const Network = ({ graphType, graphData }) => {
     let cy = cytoscape(
       createCytoscapeConfig(getGraphData(graphData), graphType)
     );
-    cy.animate().delay(1000).animate({
-      zoom: 1,
+    // cy.animate().delay(1500).animate({
+    //   zoom: 1,
+    // });
+    let node = cy.elements().nodes();
+    node.unbind("mouseover");
+    node.bind("mouseover", () => {
+      document.body.style.cursor = "pointer";
+    });
+    node.unbind("mouseout");
+    node.bind("mouseout", () => {
+      document.body.style.cursor = "default";
     });
   }, [graphType, graphData]);
   return <div id="cy" style={{ height: "42rem", position: "relative" }}></div>;
