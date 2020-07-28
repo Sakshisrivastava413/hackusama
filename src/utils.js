@@ -6,25 +6,10 @@ function getGraphData(data) {
       data: {
         id: el.address,
         bg: "red",
+        nominators: el.backedValidators,
+        shape: "barrel",
       },
     });
-    el.backedValidators &&
-      el.backedValidators.forEach((v) => {
-        elements.push({
-          group: "nodes",
-          data: {
-            id: v.address,
-            bg: "blue",
-          },
-        });
-        elements.push({
-          group: "edges",
-          data: {
-            target: el.address,
-            source: v.address,
-          },
-        });
-      });
   });
   return elements;
 }
@@ -39,7 +24,7 @@ function createCytoscapeConfig(elements, graphType) {
         selector: "node",
         style: {
           "background-color": "data(bg)",
-          "font-size": 13,
+          "shape": "data(shape)",
         },
       },
       {
