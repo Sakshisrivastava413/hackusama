@@ -1,15 +1,16 @@
-function getGraphData(data) {
+function getGraphData(data, range) {
   const elements = [];
   data.forEach((el) => {
     elements.push({
-      group: "nodes",
+      group: 'nodes',
       data: {
-        id: el.address,
-        bg: "red",
-        nominators: el.backedValidators,
-        shape: "barrel",
-        size: getSize(el.rank),
-        rank: el.rank,
+        id: el.accountId,
+        bg: 'red',
+        nominators: el.backedNominator,
+        shape: 'barrel',
+        size: getSize(1),
+        rank: getRank(el.totalStake, range),
+        totalStake: el.totalStake
       },
     });
   });
@@ -17,33 +18,47 @@ function getGraphData(data) {
 }
 
 function getSize(rank) {
-  switch(rank) {
-    case 1: return 35
-    case 2: return 25
-    case 3: return 20
-    case 4: return 15
+  switch (rank) {
+    case 1:
+      return 35;
+    case 2:
+      return 25;
+    case 3:
+      return 20;
+    case 4:
+      return 15;
   }
+}
+
+function getRank(rank, range) {
+  const min = range[0];
+  const max = range[range.length - 1];
+  console.log(min, max)
+  if (rank >= min && rank < max / 4) return 4;
+  else if (rank >= min / 4 && rank < max / 2) return 3;
+  else if (rank >= min / 2 && rank < max) return 2;
+  else return 1;
 }
 
 function createCytoscapeConfig(elements, graphType) {
   return {
-    container: document.getElementById("cy"),
+    container: document.getElementById('cy'),
     elements: elements,
     grabbable: true,
     style: [
       {
-        selector: "node",
+        selector: 'node',
         style: {
-          "background-color": "data(bg)",
-          shape: "data(shape)",
-          width: "data(size)",
-          height: "data(size)",
+          'background-color': 'data(bg)',
+          shape: 'data(shape)',
+          width: 'data(size)',
+          height: 'data(size)',
         },
       },
       {
-        selector: "edge",
+        selector: 'edge',
         style: {
-          "line-color": "#ccc",
+          'line-color': '#ccc',
         },
       },
     ],
@@ -53,15 +68,15 @@ function createCytoscapeConfig(elements, graphType) {
 }
 
 function getLayout(type) {
-  return type == "Graph"
+  return type === 'Graph'
     ? {
-        name: "cose",
+        name: 'cose',
         nodeRepulsion: 400000,
         gravity: 80,
         coolingFactor: 0.95,
       }
     : {
-        name: "dagre",
+        name: 'dagre',
         transform: function (node, pos) {
           const { rank } = node._private.data;
           return { x: pos.x, y: pos.y + rank * 50 };
@@ -69,4 +84,4 @@ function getLayout(type) {
       };
 }
 
-export { createCytoscapeConfig, getGraphData };
+export { createCytoscapeConfig, getGraphData, getRank };
