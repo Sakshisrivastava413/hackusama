@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
-import { createCytoscapeConfig, getGraphData, getRank } from '../utils';
+import {
+  createCytoscapeConfig,
+  getGraphData,
+  getRank,
+  getSize,
+} from '../utils';
 
 cytoscape.use(dagre);
 
@@ -11,7 +16,7 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
       createCytoscapeConfig(getGraphData(graphData, range), graphType)
     );
     // cy.animate().delay(1500).animate({
-    //   zoom: 1,
+    //   zoom: 0.8,
     // });
     let node = cy.elements().nodes();
     node.unbind('mouseover');
@@ -25,17 +30,18 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
 
     node.bind('click', (event) => {
       const elements = [];
-      console.log(event.target._private.data)
+      console.log(event.target._private.data);
       const { nominators, id } = event.target._private.data;
       nominators.forEach((v) => {
+        console.log(v.stake);
         elements.push({
           group: 'nodes',
           data: {
             id: v.nomId,
             bg: 'blue',
             shape: 'ellipse',
-            size: 15,
-            rank: Math.floor(Math.random() * 4) || getRank(v.stake, nomRange),
+            size: getSize(getRank(v.stake, nomRange)),
+            rank: getRank(v.stake, nomRange),
           },
         });
         elements.push({
@@ -57,7 +63,7 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
         },
       });
       layout.run();
-      cy.zoom(1);
+      // cy.zoom(1);
     });
   }, [graphType, graphData]);
   return <div id='cy' style={{ height: '42rem', position: 'relative' }}></div>;

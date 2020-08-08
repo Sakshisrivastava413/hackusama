@@ -10,7 +10,7 @@ function getGraphData(data, range) {
         shape: 'barrel',
         size: getSize(1),
         rank: getRank(el.totalStake, range),
-        totalStake: el.totalStake
+        totalStake: el.totalStake,
       },
     });
   });
@@ -33,11 +33,10 @@ function getSize(rank) {
 function getRank(rank, range) {
   const min = range[0];
   const max = range[range.length - 1];
-  console.log(min, max)
-  if (rank >= min && rank < max / 4) return 4;
-  else if (rank >= min / 4 && rank < max / 2) return 3;
-  else if (rank >= min / 2 && rank < max) return 2;
-  else return 1;
+  if (rank >= max && rank > max * 0.5) return 1;
+  else if (rank >= max * 0.5 && rank > max * 0.2) return 2;
+  else if (rank >= max * 0.2 && rank > max * 0.1) return 3;
+  else return 4;
 }
 
 function createCytoscapeConfig(elements, graphType) {
@@ -84,4 +83,4 @@ function getLayout(type) {
       };
 }
 
-export { createCytoscapeConfig, getGraphData, getRank };
+export { createCytoscapeConfig, getGraphData, getRank, getSize };

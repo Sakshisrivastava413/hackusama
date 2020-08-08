@@ -73363,17 +73363,17 @@ export const filteredActiveValidators = entireActualData.map((validator) => {
       stashId: validator.stashId,
       controllerId: validator.controllerId,
       accountId: validator.accountId,
-      totalStake: validator.totalStake.$numberDouble,
+      totalStake: validator.totalStake,
       backedNominator: validator.nominators.map((item) => {
         return {
           nomId: item.nomId,
-          stake: (item.stake && item.stake.$numberDouble) || '1366831018195691',
+          stake: (item.stake && item.stake) || '1366831018195691',
         };
       }),
     };
   });
   
-  export const range = entireActualData.map(item => item.totalStake.$numberDouble).sort();
+  export const range = entireActualData.map(item => item.totalStake).sort((a, b) => a - b);
   
-  export const nomRange = entireActualData.map(item => item.nominators.map(n => n.stake && n.stake.$numberDouble)).sort();
+  export const nomRange = entireActualData.map(item => item.nominators.map(n => n.stake && n.stake)).sort((a, b) => a - b);
   
