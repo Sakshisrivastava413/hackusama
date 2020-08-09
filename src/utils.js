@@ -8,7 +8,7 @@ function getGraphData(data, range) {
         bg: 'red',
         nominators: el.backedNominator,
         shape: 'barrel',
-        size: getSize(1),
+        size: getSize(getRank(el.totalStake, range)),
         rank: getRank(el.totalStake, range),
         totalStake: el.totalStake,
       },
@@ -19,13 +19,13 @@ function getGraphData(data, range) {
 
 function getSize(rank) {
   switch (rank) {
-    case 1:
-      return 35;
     case 2:
-      return 25;
-    case 3:
-      return 20;
+      return 35 * 4;
     case 4:
+      return 25 * 3;
+    case 6:
+      return 20 * 2;
+    case 8:
       return 15;
   }
 }
@@ -33,10 +33,10 @@ function getSize(rank) {
 function getRank(rank, range) {
   const min = range[0];
   const max = range[range.length - 1];
-  if (rank >= max && rank > max * 0.5) return 1;
-  else if (rank >= max * 0.5 && rank > max * 0.2) return 2;
-  else if (rank >= max * 0.2 && rank > max * 0.1) return 3;
-  else return 4;
+  if (rank >= max && rank > max * 0.5) return 2;
+  else if (rank >= max * 0.5 && rank > max * 0.2) return 4;
+  else if (rank >= max * 0.2 && rank > max * 0.1) return 6;
+  else return 8;
 }
 
 function createCytoscapeConfig(elements, graphType) {
@@ -67,6 +67,8 @@ function createCytoscapeConfig(elements, graphType) {
 }
 
 function getLayout(type) {
+  // let lastPos;
+  // let lastRank;
   return type === 'Graph'
     ? {
         name: 'cose',
@@ -79,6 +81,19 @@ function getLayout(type) {
         transform: function (node, pos) {
           const { rank } = node._private.data;
           return { x: pos.x, y: pos.y + rank * 50 };
+
+          // YESTERDAY's experiment
+          // let res;
+          // console.log(lastRank, rank);
+          // console.log(lastPos, pos);
+          // if (!lastPos) {
+          //   res = { x: pos.x, y: pos.y + rank * 50 };
+          // } else {
+          //   res = { x: lastRank != rank ? lastPos.x : pos.x, y: pos.y + rank * 50 };
+          // }
+          // lastPos = {...pos};
+          // lastRank = rank;
+          // return res;
         },
       };
 }
