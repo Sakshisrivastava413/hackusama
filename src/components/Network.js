@@ -18,6 +18,12 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
     // cy.animate().delay(1500).animate({
     //   zoom: 0.8,
     // });
+    // cy.animate({
+    //   pan: { x: 100, y: 100 },
+    //   zoom: 2
+    // }, {
+    //   duration: 1000
+    // });
     let node = cy.elements().nodes();
     node.unbind('mouseover');
     node.bind('mouseover', () => {
@@ -53,6 +59,7 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
         });
       });
       cy.add(elements);
+      // let lastPos = null;
       const layout = cy.layout({
         name: 'dagre',
         fit: false,
@@ -60,6 +67,15 @@ const Network = ({ graphType, graphData, range, nomRange }) => {
         transform: function (node, pos) {
           const { rank } = node._private.data;
           return { x: pos.x, y: pos.y + rank * 50 };
+
+          // YESTERDAY's experiment
+          // if (!lastPos) {
+          //   lastPos = pos;
+          //   return { x: pos.x, y: pos.y + rank * 50 };
+          // } else {
+          //   lastPos = pos;
+          //   return { x: lastPos.y != pos.y ? lastPos.x : pos.x, y: pos.y + rank * 50 };
+          // }
         },
       });
       layout.run();
